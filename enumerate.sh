@@ -1,23 +1,30 @@
-##
-## Echo an initializer string for an associative array.
-##
-## Example:
-##		`enumerate a b c` echoes ([a]=0 [b]=1 [c]=2)
-##
-## Usage:
-## 		declare -A MyEnum=$(enumerate Elem1 Elem2 Elem3)
-##
-## @params sequence of identifiers for enumerated constants
-##
+#
+#	enumerate <function>
+#
+#	Echo an initializer string for an associative array,
+#	each key being assigned a different integer value.
+#
+#	@params $@ sequence of identifiers for enumerated constants
+#
+#	Example
+#		$ enumerate a 'b c' d	# outputs: [a]=0 [b c]=1 [d]=2
+#
+#	Usage
+#		$ declare -A MyEnum="($(enumerate Elem1 Elem2 Elem3))"
+#
+#	Note
+#		As seen in 'Usage', use either quotes or escape the parenthese of
+#		the array declaration.
+#
 enumerate()
 {
-	local ArrayString
+	local OutputString
 	local -i i=0
 
-	for EnumId in $@
+	for EnumId in "$@"
 	do
-		ArrayString+="[$EnumId]=$((i++)) "
+		OutputString+="[$EnumId]=$((i++)) "
 	done
 
-	echo -n "(${ArrayString})"
+	printf '%s' "${OutputString::-1}"
 }
