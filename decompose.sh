@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-#	decompose <function>
+#	decompose (function)
 #
 #	For a given input and single character separator, output each field on
 #	a seperate line.

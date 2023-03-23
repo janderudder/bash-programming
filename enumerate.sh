@@ -1,5 +1,5 @@
 #
-#	enumerate <function>
+#	enumerate (function)
 #
 #	Echo an initializer string for an associative array,
 #	each key being assigned a different integer value.
